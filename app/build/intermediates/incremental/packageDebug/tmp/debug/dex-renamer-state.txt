@@ -1,0 +1,7 @@
+#Wed Nov 04 15:51:23 EST 2026
+base.0=C\:\\Users\\tahar\\OneDrive\\Desktop\\PantryPlan_Android_Prototype\\PantryPlan\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.1=C\:\\Users\\tahar\\OneDrive\\Desktop\\PantryPlan_Android_Prototype\\PantryPlan\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
+path.0=0/classes.dex
+path.1=7/classes.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex

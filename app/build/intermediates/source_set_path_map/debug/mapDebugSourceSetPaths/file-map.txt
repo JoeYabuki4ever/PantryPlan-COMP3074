@@ -1,0 +1,7 @@
+com.pantryplan.app-pngs-0 C:\Users\tahar\OneDrive\Desktop\PantryPlan_Android_Prototype\PantryPlan\app\build\generated\res\pngs\debug
+com.pantryplan.app-resValues-1 C:\Users\tahar\OneDrive\Desktop\PantryPlan_Android_Prototype\PantryPlan\app\build\generated\res\resValues\debug
+com.pantryplan.app-packageDebugResources-2 C:\Users\tahar\OneDrive\Desktop\PantryPlan_Android_Prototype\PantryPlan\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.pantryplan.app-packageDebugResources-3 C:\Users\tahar\OneDrive\Desktop\PantryPlan_Android_Prototype\PantryPlan\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.pantryplan.app-debug-4 C:\Users\tahar\OneDrive\Desktop\PantryPlan_Android_Prototype\PantryPlan\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.pantryplan.app-debug-5 C:\Users\tahar\OneDrive\Desktop\PantryPlan_Android_Prototype\PantryPlan\app\src\debug\res
+com.pantryplan.app-main-6 C:\Users\tahar\OneDrive\Desktop\PantryPlan_Android_Prototype\PantryPlan\app\src\main\res
