@@ -1,23 +1,32 @@
-# PantryPlan Android UI Prototype
-Native Java Android project. Android 8.0+; Java 17; Android SDK 35.
+# PantryPlan | Functional prototype
+COMP3074 · Group P 56 · Taharim Haque, Fatma Akkoca, Punar Sharifli
 
-## Open and run (Windows)
-1. Extract this ZIP completely.
-2. Android Studio: File > Open. Select PantryPlan (the folder containing settings.gradle).
-3. Allow Gradle sync and install SDK Platform 35 if prompted. Internet is needed for this first setup.
-4. Settings > Build, Execution, Deployment > Build Tools > Gradle: use JDK 17 for Gradle.
-5. Device Manager: create/start a Pixel emulator running Android API 26 or later.
-6. Select app in the top toolbar, select the emulator, then press Run.
+## Run in Android Studio (Windows)
+1. Right-click the ZIP and select **Extract All**.
+2. In Android Studio choose **File → Open**. Select the extracted folder that directly contains **settings.gradle**, **app**, and **gradlew.bat**. The archive places these at its top level.
+3. Wait for Gradle sync. Use a Gradle JDK of 17 or later and install Android SDK Platform 35 if prompted. First setup needs an internet connection.
+4. Start an Android 8.0 (API 26) or newer emulator in Device Manager, or connect an Android phone with USB debugging enabled. Select **app**, select your device, and click **Run ▶**.
+5. If Run is grey and the toolbar says **Add Configuration**, first verify you opened the folder containing settings.gradle and that Gradle sync succeeded. Check the Build window for any sync errors.
 
-## Demonstration
-Pantry starts with Milk, Spinach and Brown rice on first launch only.
-Search or filter storage; add a food; enter name, positive quantity, unit, storage and optional date.
-Edit or delete food (deletion asks for confirmation). Dates shows upcoming items within 1/3/7 days and explicitly labels past dates. Copy any food to Shopping. Add/edit shopping items, check purchases and clear purchased records with confirmation. Restart the app to demonstrate SQLite persistence.
+## Demonstrate the functional prototype
+| Action | What to check |
+|---|---|
+| Pantry → Add food. Enter Yogurt, 2, cups, Fridge. Pick tomorrow's date. Rotate before saving. | The draft stays filled. Save it, then search for Yogurt and filter by Fridge. |
+| Edit Yogurt. Try quantity 0, then change it to 1 and save. Close and reopen PantryPlan. | Zero is rejected. The saved record still shows 1 cup (unit text as entered). |
+| Add a food dated yesterday and another with no date. Open Dates and choose 1 day. | Yesterday appears under Passed dates. Yogurt appears under Today and upcoming. The undated food stays in Pantry only. Today and the last day of the selected window are both included. |
+| Tap + Shopping list on Yogurt, then delete Yogurt from Pantry and confirm. | Its shopping copy remains. Add a second shopping item, edit the copy, check it, then clear purchased. Only the checked copy disappears. |
+| Add a food dated today. Settings → Turn on reminders. Allow notifications if Android asks. Tap Check dates now. | One summary notification appears. Tap it to open Expiring soon. If you deny permission, inventory, dates and shopping remain usable. Use Android notification settings to allow notifications later. |
+| Turn off reminders. Try the pantry and shopping actions in airplane mode. | The scheduled check is cancelled, the current summary is dismissed, and local data remains accessible without signing in. |
 
-## Scope
-This is a functional UI prototype, not the completed final assignment. Native controls are generated in Java; the proposal's XML/Fragments/ViewModel structure is not yet implemented. SQLite stores food and shopping records. The review window is saved in SharedPreferences. Background reminders, notification permissions, CSV export and final architecture remain future work. Settings explicitly states that reminders are not scheduled. No dangerous permissions or accounts are required.
+Daily reminders use AndroidX WorkManager. The first background check is scheduled after about a day; Android controls the actual time. A check posts at most one summary and only for upcoming dated food in the selected window. Check dates now runs the same counting and posting logic immediately. The settings switch controls reminders; the Dates screen always works independently.
+
+## Storage and scope
+SQLite stores food and shopping records. SharedPreferences stores the date window, first-run marker and reminder preference. The app uses the same package name and database as the UI prototype; an in-place update signed with the same key keeps its data. Clearing app storage or uninstalling deletes local records. The five native Java screens use programmatically created views; meals, cloud sharing and scanning are outside this milestone.
 
 ## Verification
-Manifest XML parsed and project structure checked. Android SDK is unavailable in the creation environment; APK compilation and emulator interaction have NOT been verified. Build/run in Android Studio using the instructions above. No APK is included.
+Host checks passed for the date groups (18 boundary cases including leap day), SQLite reopen and edits, shopping-copy independence and clearing purchased rows. The Java source syntax was checked. These checks do not exercise the Android UI or notification delivery. The Android SDK was unavailable and the Gradle distribution download was blocked in the packaging environment; no APK or successful device run is claimed. Use the table above for device acceptance testing.
 
-Prepared for PantryPlan, Group P 56. Taharim Haque (101418321), Fatma Akkoca, Punar Sharifli.
+Re-run the host checks from the project root with Python 3 and a JDK:
+- python checks/check_storage.py
+- javac -d checks/out app/src/main/java/com/pantryplan/app/PantryReview.java checks/ReviewChecks.java
+- java -cp checks/out com.pantryplan.app.ReviewChecks
